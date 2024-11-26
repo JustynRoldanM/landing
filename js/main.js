@@ -1,10 +1,20 @@
 const databaseURL = "https://landing-d867a-default-rtdb.firebaseio.com/coleccion.json";
 
+const navItems = document.querySelectorAll('.navbar-nav .nav-item');
+
+navItems.forEach(item => {
+  item.addEventListener('click', function () {
+    navItems.forEach(nav => nav.classList.remove('active'));
+
+    this.classList.add('active');
+  });
+});
+
 let sendData = () => {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    data["saved"] = new Date().toLocaleDateString("es-CO", {timeZone: "America/Guayaquil"})
+    data["saved"] = new Date().toLocaleDateString("es-CO", { timeZone: "America/Guayaquil" })
 
     fetch(databaseURL, {
         method: 'POST',
@@ -13,45 +23,45 @@ let sendData = () => {
         },
         body: JSON.stringify(data)
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Error en la solicitud: ${response.statusText}`);
-        }
-        return response.json(); // Procesa la respuesta como JSON
-    })
-    .then(result => {
-        alert('Agradeciendo tu preferencia, nos mantenemos actualizados y enfocados en atenderte como mereces'); // Maneja la respuesta con un mensaje
-        form.reset();
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error en la solicitud: ${response.statusText}`);
+            }
+            return response.json(); // Procesa la respuesta como JSON
+        })
+        .then(result => {
+            alert('Agradeciendo tu preferencia, nos mantenemos actualizados y enfocados en atenderte como mereces'); // Maneja la respuesta con un mensaje
+            form.reset();
 
-        //Recupeacion de datos
-        getData();
-    })
-    .catch(error => {
-        alert('Hemos experimentado un error. ¡Vuelve pronto!'); // Maneja el error con un mensaje
-    });
+            //Recupeacion de datos
+            getData();
+        })
+        .catch(error => {
+            alert('Hemos experimentado un error. ¡Vuelve pronto!'); // Maneja el error con un mensaje
+        });
 }
 
 let getData = async () => {
-    try{
+    try {
         // Realiza la petición fetch a la URL de la base de datos
         const response = await fetch(databaseURL, {
             method: 'GET'
         });
-        
-         // Verifica si la respuesta es exitosa
-         if(!response.ok){
+
+        // Verifica si la respuesta es exitosa
+        if (!response.ok) {
             alert("Hemos experimentado un error. ¡Vuelva pronto!");
-         }
+        }
 
-         const data = await response.json();
+        const data = await response.json();
 
-         if(data != null){
+        if (data != null) {
             //Cuente el número de suscriptores registrados por fecha a partir del objeto data
 
             let countSuscribers = new Map()
 
-            if(Object.keys(data).length > 0){
-                for(let key in data){
+            if (Object.keys(data).length > 0) {
+                for (let key in data) {
 
                     let { email, saved } = data[key];
 
@@ -61,32 +71,32 @@ let getData = async () => {
                     countSuscribers.set(date, count + 1);
                 }
             }
-         	// END
+            // END
 
-             // Genere y agregue filas de una tabla HTML para mostrar fechas y cantidades de suscriptores almacenadas 
-            if (countSuscribers.size > 0){
+            // Genere y agregue filas de una tabla HTML para mostrar fechas y cantidades de suscriptores almacenadas 
+            if (countSuscribers.size > 0) {
                 subscribers.innerHTML = ""
 
                 let index = 1;
-                for(let [date, count] of countSuscribers){
+                for (let [date, count] of countSuscribers) {
                     let rowTemplate = `
                         <tr>
                             <th>${index}</th>
                             <td>${date}</td>
                             <td>${count}</td>
                         </tr>`
-                subscribers.innerHTML += rowTemplate;
-                index++;
+                    subscribers.innerHTML += rowTemplate;
+                    index++;
                 }
             }
 
-             // END
+            // END
 
-         }
+        }
 
-    } catch(error){
-        
-        alert('Hemos experimentado un error. ¡Vuelve pronto!'); 
+    } catch (error) {
+
+        alert('Hemos experimentado un error. ¡Vuelve pronto!');
     }
 }
 
@@ -101,7 +111,7 @@ let loaded = (eventLoaded) => {
     let myform = document.getElementById("form")
     myform.addEventListener("submit", (eventSubmit) => {
         eventSubmit.preventDefault()
-        const emailElement  = document.querySelector(".form-control-lg");
+        const emailElement = document.querySelector(".form-control-lg");
         const emailText = emailElement.value;
 
         if (emailText.length === 0) {
@@ -120,13 +130,13 @@ let loaded = (eventLoaded) => {
             emailElement.focus()
 
             return;
-            
+
         }
 
         sendData();
     })
 
-   
+
 }
 
 
