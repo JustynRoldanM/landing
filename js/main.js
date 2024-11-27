@@ -1,145 +1,98 @@
-const databaseURL = "https://landing-d867a-default-rtdb.firebaseio.com/coleccion.json";
-
-const navItems = document.querySelectorAll('.navbar-nav .nav-item');
-
-navItems.forEach(item => {
-  item.addEventListener('click', function () {
-    navItems.forEach(nav => nav.classList.remove('active'));
-
-    this.classList.add('active');
-  });
-});
+const databaseURL = 'https://landing-1e79b-default-rtdb.firebaseio.com/collection.json';
 
 let sendData = () => {
+    const form = document.getElementById('form');
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    data["saved"] = new Date().toLocaleDateString("es-CO", { timeZone: "America/Guayaquil" })
+    data['fechaRegistro'] = new Date().toLocaleString('es-CO', { timeZone: 'America/Bogota' });
 
     fetch(databaseURL, {
         method: 'POST',
         headers: {
-            "Content-Type": "application/json"
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error en la solicitud: ${response.statusText}`);
-            }
-            return response.json(); // Procesa la respuesta como JSON
-        })
-        .then(result => {
-            alert('Agradeciendo tu preferencia, nos mantenemos actualizados y enfocados en atenderte como mereces'); // Maneja la respuesta con un mensaje
-            form.reset();
-
-            //Recupeacion de datos
-            getData();
-        })
-        .catch(error => {
-            alert('Hemos experimentado un error. ¡Vuelve pronto!'); // Maneja el error con un mensaje
-        });
-}
-
-let getData = async () => {
-    try {
-        // Realiza la petición fetch a la URL de la base de datos
-        const response = await fetch(databaseURL, {
-            method: 'GET'
-        });
-
-        // Verifica si la respuesta es exitosa
+    .then(response => {
         if (!response.ok) {
-            alert("Hemos experimentado un error. ¡Vuelva pronto!");
+            throw new Error(`Error en la solicitud: ${response.statusText}`);
         }
+        return response.json();
+    })
+    .then(result => {
+        alert('Tu cita fue registrada con éxito. Pronto recibirás un correo con más información.');
+        form.reset();
+    })
+    .catch(error => {
+        alert('Ocurrió un error al procesar tu solicitud. Por favor, intenta nuevamente.');
+        console.error(error);
+    });
+};
 
-        const data = await response.json();
+let loaded = () => {
+    const form = document.getElementById('form');
 
-        if (data != null) {
-            //Cuente el número de suscriptores registrados por fecha a partir del objeto data
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-            let countSuscribers = new Map()
-
-            if (Object.keys(data).length > 0) {
-                for (let key in data) {
-
-                    let { email, saved } = data[key];
-
-                    let date = saved.split(",")[0];
-
-                    let count = countSuscribers.get(date) || 0;
-                    countSuscribers.set(date, count + 1);
-                }
-            }
-            // END
-
-            // Genere y agregue filas de una tabla HTML para mostrar fechas y cantidades de suscriptores almacenadas 
-            if (countSuscribers.size > 0) {
-                subscribers.innerHTML = ""
-
-                let index = 1;
-                for (let [date, count] of countSuscribers) {
-                    let rowTemplate = `
-                        <tr>
-                            <th>${index}</th>
-                            <td>${date}</td>
-                            <td>${count}</td>
-                        </tr>`
-                    subscribers.innerHTML += rowTemplate;
-                    index++;
-                }
-            }
-
-            // END
-
-        }
-
-    } catch (error) {
-
-        alert('Hemos experimentado un error. ¡Vuelve pronto!');
-    }
-}
-
-let ready = () => {
-    console.log("DOM está listo");
-
-    //Recuperacion de datos
-    getData();
-}
-
-let loaded = (eventLoaded) => {
-    let myform = document.getElementById("form")
-    myform.addEventListener("submit", (eventSubmit) => {
-        eventSubmit.preventDefault()
-        const emailElement = document.querySelector(".form-control-lg");
-        const emailText = emailElement.value;
-
+        const emailElement = document.getElementById('inputCorreo');
+        const emailText = emailElement.value.trim();
         if (emailText.length === 0) {
-            emailElement.animate(
-                [
-                    { transform: "translateX(0)" },
-                    { transform: "translateX(50px)" },
-                    { transform: "translateX(-50px)" },
-                    { transform: "translateX(0)" }
-                ],
-                {
-                    duration: 400,
-                    easing: "linear",
-                }
-            )
-            emailElement.focus()
-
-            return;
-
+            emailElement.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-5px)' }, { transform: 'translateX(5px)' }, { transform: 'translateX(0)' }], {
+                duration: 300,
+                iterations: 1
+            });
+            emailElement.focus();
+            return; 
         }
 
         sendData();
+    });
+};
+
+let getData = () => {
+    fetch(databaseURL, {
+        method: 'GET',
     })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error al obtener los datos: ${response.statusText}`);
+            }
+            return response.json(); 
+        })
+        .then(data => {
+            console.log(data);
+            renderData(data);
+        })
+        .catch(error => {
+            console.error('Error:', error); 
+        });
+};
 
+let renderData = (data) => {
+    const container = document.getElementById('dataContainer');
+    container.innerHTML = ''; 
 
-}
+    if (data) {
+        Object.entries(data).forEach(([key, value]) => {
+            const item = document.createElement('div');
+            item.className = 'data-item';
+            item.innerHTML = `
+                <p><strong>Email:</strong> ${value.email}</p>
+                <p><strong>Nombre:</strong> ${value.nombre}</p>
+                <p><strong>Tipo de Mascota:</strong> ${value.tipoMascota}</p>
+                <p><strong>Servicio:</strong> ${value.servicio}</p>
+                <p><strong>Fecha Registro:</strong> ${value.fechaRegistro}</p>
+                <hr>
+            `;
+            container.appendChild(item);
+        });
+    } else {
+        container.innerHTML = '<p>No hay datos registrados.</p>';
+    }
+};
 
-
-window.addEventListener("DOMContentLoaded", ready)
-window.addEventListener("load", loaded)
+window.addEventListener('load', getData);
+window.addEventListener('load', loaded);
 
