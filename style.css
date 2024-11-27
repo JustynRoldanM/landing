@@ -279,7 +279,7 @@ h1 {
 }
 
 .media-body p {
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 2;
   color: rgba(0, 0, 0, 0.5);
 }
@@ -341,18 +341,59 @@ h1 {
 }
 
 #form{
-  box-shadow: 0px 8px 21px -10px rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);
   padding: 80px;
+}
+
+#form button{
+  background-color: var(--morado);
+  color: #fff;
+  font-weight: 600;
+  transition: .1s ease;
+}
+
+#form button:hover{
+  background-color: transparent;
 }
 
 #form p{
   color: #fff;
 }
 
-#form input,#form select{
+#form input::placeholder{
   font-size: 1rem;
   color: rgba(0,0,0,0.5);
+  padding: 10px;
 }
+
+#form input{
+  font-size: 1rem;
+  color: rgba(0,0,0,1);
+  padding: 10px;
+}
+
+select option:first-child:disabled {
+  font-size: 1rem;
+  color: rgba(0,0,0,0.5);
+  padding: 10px;
+}
+
+select:invalid {
+  font-size: 1rem;
+  color: rgba(0,0,0,0.5);
+  padding: 10px;
+}
+
+select:valid {
+  font-size: 1rem;
+  color: rgba(0,0,0,1);
+  padding: 10px;
+}
+
+select option:enabled {
+  color: #000;
+}
+
 
 .contact-header h3{
   color: #fff;
