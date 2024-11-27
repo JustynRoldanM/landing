@@ -228,19 +228,65 @@
       </div>
   </section>
 
-  <section class="newsletter bg-light" style="background: url(images/pattern-bg.png) no-repeat;">
-    <div class="container">
+  <section id="contacto" class="newsletter bg-light">
+    <div class="container c-contacto">
       <div class="row justify-content-center">
         
         <!-- DIV contenedor del formulario -->
         <div class="col-md-8 py-5 my-5">
-          <div class="subscribe-header text-center pb-3">
-            <h3 class="section-title text-uppercase">Sign Up for our newsletter</h3>
+          <div class="contact-header text-center pb-3">
+            <h3 class="section-title text-uppercase titulo-seccion">Contacto</h3>
           </div>
           <form id="form" class="d-flex flex-wrap gap-2">
-            <input id="inputCorreo" type="text" name="email" placeholder="Your Email Addresss" class="form-control form-control-lg">
-            <button id="botonFormulario" class="btn btn-dark btn-lg text-uppercase w-100">Sign Up</button>
-          </form>
+            <input 
+              id="inputCorreo" 
+              type="email" 
+              name="email" 
+              placeholder="Correo Electrónico" 
+              class="form-control form-control-lg w-100" 
+              required>
+            
+            <input 
+              id="inputNombre" 
+              type="text" 
+              name="nombre" 
+              placeholder="Nombre del Propietario" 
+              class="form-control form-control-lg w-100" 
+              required>
+          
+            <select 
+              id="selectTipoMascota" 
+              name="tipoMascota" 
+              class="form-select form-select-lg w-100" 
+              required>
+              <option value="" disabled selected>Selecciona el Tipo de Mascota</option>
+              <option value="perro">Perro</option>
+              <option value="gato">Gato</option>
+              <option value="ave">Ave</option>
+              <option value="otro">Otro</option>
+            </select>
+            
+            <select 
+              id="selectServicio" 
+              name="servicio" 
+              class="form-select form-select-lg w-100" 
+              required>
+              <option value="" disabled selected>Selecciona un Servicio</option>
+              <option value="consulta_general">Consulta General</option>
+              <option value="vacunacion">Vacunación</option>
+              <option value="estetica">Estética</option>
+              <option value="cirugia">Cirugía</option>
+            </select>
+            
+            <button 
+              id="botonFormulario" 
+              class="btn btn-dark btn-lg text-uppercase w-100">
+              Reservar Cita
+            </button>
+            <p class="mt-2 text-center w-100">
+              Recibirás un correo electrónico con las citas disponibles y más información para confirmar tu reserva.
+            </p>
+          </form>          
         </div>
       </div>
     </div>
