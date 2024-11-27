@@ -12,6 +12,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -75,13 +76,13 @@
         </div>
       </div>
     </div>
-    <article id="info-nosotros pb-5">
+    <article id="info-nosotros">
       <div class="info-nosotros">
         <div class="titulo-info">
           <h3>¿Por qué elegirnos?</h3>
         </div>
-        <div class="razones">
-          <div class="detalle">
+        <ul class="razones">
+          <li class="detalle">
             <div class="detalle-icono-contenedor">
               <div class="icono-detalle">
                 <img class="img-fluid" src="images/adopcion (1).png" alt="">
@@ -91,8 +92,8 @@
               <h3>Consejos de cuidado</h3>
               <p>"Consejos simples para cuidar a tu mascota. ¡Haz que cada día sea especial para tu amigo peludo!"</p>
             </div>
-          </div>
-          <div class="detalle">
+          </li>
+          <li class="detalle">
             <div class="detalle-icono-contenedor">
               <div class="icono-detalle">
                 <img class="img-fluid" src="images/servicio-al-cliente.png" alt="">
@@ -102,8 +103,8 @@
               <h3>Atención al cliente</h3>
               <p>Nuestro equipo está aquí para responder a todas tus preguntas y brindarte el apoyo que necesitas.</p>
             </div>
-          </div>
-          <div class="detalle">
+          </li>
+          <li class="detalle">
             <div class="detalle-icono-contenedor">
               <div class="icono-detalle">
                 <img class="img-fluid" src="images/llamada-de-emergencia.png" alt="">
@@ -113,8 +114,8 @@
               <h3>Servicios de Emergencia</h3>
               <p>En momentos críticos, estamos aquí para ti y tu mascota.</p>
             </div>
-          </div>
-          <div class="detalle">
+          </li>
+          <li class="detalle">
             <div class="detalle-icono-contenedor">
               <div class="icono-detalle">
                 <img class="img-fluid" src="images/veterinarios.png" alt="">
@@ -124,13 +125,14 @@
               <h3>Ayuda Veterinaria</h3>
               <p>Nuestro equipo de expertos está listo para cuidar de tu mascota y brindarle la atención que merece.</p>
             </div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
       <div class="pug">
         <img class="img-fluid" src="images/pug-dog-isolated-white-background.png" alt="">
       </div>
     </article>
+    
   </section>
 
   <section id="servicios" class="bg-light">
@@ -291,56 +293,37 @@
       </div>
     </div>
   </section>
-
-  <div id="dataContainer" class="data-container"></div>
-
-  <footer id="footer" class="mt-5">
+  <footer id="footer" class="bg-light text-dark">
     <div class="container">
       <div class="row d-flex flex-wrap justify-content-between py-5">
         <div class="col-md-3 col-sm-6">
           <div class="footer-menu footer-menu-001">
             <div class="footer-intro mb-4">
               <a href="index.html">
-                <img src="images/main-logo.png" alt="logo">
+                <i class="fas fa-paw fa-3x"></i>
               </a>
             </div>
-            <p>Gravida massa volutpat aenean odio. Amet, turpis erat nullam fringilla elementum diam in. Nisi, purus
-              vitae, ultrices nunc. Sit ac sit suscipit hendrerit.</p>
+            <p>Nos dedicamos al bienestar de tus mascotas. En nuestra veterinaria encontrarás atención profesional, cariño y cuidado.</p>
             <div class="social-links">
               <ul class="list-unstyled d-flex flex-wrap gap-3">
                 <li>
-                  <a href="#" class="text-secondary">
-                    <svg width="24" height="24" viewBox="0 0 24 24">
-                      <use xlink:href="#facebook"></use>
-                    </svg>
+                  <a href="#">
+                    <i class="fab fa-facebook fa-lg"></i>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="text-secondary">
-                    <svg width="24" height="24" viewBox="0 0 24 24">
-                      <use xlink:href="#twitter"></use>
-                    </svg>
+                  <a href="#">
+                    <i class="fab fa-twitter fa-lg"></i>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="text-secondary">
-                    <svg width="24" height="24" viewBox="0 0 24 24">
-                      <use xlink:href="#youtube"></use>
-                    </svg>
+                  <a href="#">
+                    <i class="fab fa-instagram fa-lg"></i>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="text-secondary">
-                    <svg width="24" height="24" viewBox="0 0 24 24">
-                      <use xlink:href="#pinterest"></use>
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="text-secondary">
-                    <svg width="24" height="24" viewBox="0 0 24 24">
-                      <use xlink:href="#instagram"></use>
-                    </svg>
+                  <a href="#">
+                    <i class="fab fa-youtube fa-lg"></i>
                   </a>
                 </li>
               </ul>
@@ -349,88 +332,79 @@
         </div>
         <div class="col-md-3 col-sm-6">
           <div class="footer-menu footer-menu-002">
-            <h5 class="widget-title text-uppercase mb-4">Quick Links</h5>
-            <ul class="menu-list list-unstyled text-uppercase border-animation-left fs-6">
+            <h5 class="widget-title">Enlaces Rápidos</h5>
+            <ul class="menu-list list-unstyled">
               <li class="menu-item">
-                <a href="index.html" class="item-anchor">Home</a>
+                <a href="index.html">Inicio</a>
               </li>
               <li class="menu-item">
-                <a href="index.html" class="item-anchor">About</a>
+                <a href="#nosotros">Sobre Nosotros</a>
               </li>
               <li class="menu-item">
-                <a href="blog.html" class="item-anchor">Services</a>
+                <a href="#servicios">Servicios</a>
               </li>
               <li class="menu-item">
-                <a href="styles.html" class="item-anchor">Single item</a>
+                <a href="#contacto">Contacto</a>
               </li>
               <li class="menu-item">
-                <a href="#" class="item-anchor">Contact</a>
+                <a href="#blog">Blog</a>
               </li>
             </ul>
           </div>
         </div>
         <div class="col-md-3 col-sm-6">
           <div class="footer-menu footer-menu-003">
-            <h5 class="widget-title text-uppercase mb-4">Help & Info</h5>
-            <ul class="menu-list list-unstyled text-uppercase border-animation-left fs-6">
+            <h5 class="widget-title">Ayuda & Info</h5>
+            <ul class="menu-list list-unstyled">
               <li class="menu-item">
-                <a href="#" class="item-anchor">Track Your Order</a>
+                <a href="#">Cuidado en casa</a>
               </li>
               <li class="menu-item">
-                <a href="#" class="item-anchor">Returns + Exchanges</a>
+                <a href="#">Emergencias</a>
               </li>
               <li class="menu-item">
-                <a href="#" class="item-anchor">Shipping + Delivery</a>
+                <a href="#">Vacunación</a>
               </li>
               <li class="menu-item">
-                <a href="#" class="item-anchor">Contact Us</a>
+                <a href="#">Tratamientos</a>
               </li>
               <li class="menu-item">
-                <a href="#" class="item-anchor">Find us easy</a>
-              </li>
-              <li class="menu-item">
-                <a href="index.html" class="item-anchor">Faqs</a>
+                <a href="#">Preguntas Frecuentes</a>
               </li>
             </ul>
           </div>
         </div>
         <div class="col-md-3 col-sm-6">
-          <div class="footer-menu footer-menu-004 border-animation-left">
-            <h5 class="widget-title text-uppercase mb-4">Contact Us</h5>
-            <p>Do you have any questions or suggestions? <a href="mailto:contact@yourcompany.com"
-                class="item-anchor">contact@yourcompany.com</a></p>
-            <p>Do you need support? Give us a call. <a href="tel:+43 720 11 52 78" class="item-anchor">+43 720 11 52
-                78</a>
-            </p>
+          <div class="footer-menu footer-menu-004">
+            <h5 class="widget-title">Contáctanos</h5>
+            <p><i class="fas fa-envelope"></i> Escríbenos: <a href="jjroldan@espol.edu.ec">jjroldan@espol.edu.ec</a></p>
+            <p><i class="fas fa-phone"></i> Llámanos: <a href="tel:+593995699914">+593 99 659 9914</a></p>
+            <p><i class="fas fa-map-marker-alt"></i> Visítanos: La Libertad, Barrio Eloy Alfaro. Santa Elena-Ecuador</p>
           </div>
         </div>
       </div>
     </div>
     <div class="border-top py-4">
-      <div class="container">
+      <div class="container foot">
         <div class="row">
           <div class="col-md-6 d-flex flex-wrap">
             <div class="shipping">
-              <span>We ship with:</span>
-              <img src="images/arct-icon.png" alt="icon">
-              <img src="images/dhl-logo.png" alt="icon">
-            </div>
-            <div class="payment-option">
-              <span>Payment Option:</span>
-              <img src="images/visa-card.png" alt="card">
-              <img src="images/paypal-card.png" alt="card">
-              <img src="images/master-card.png" alt="card">
-            </div>
+              <span>Trabajamos con:</span>
+              <i class="fas fa-paw fa-lg"></i>
+              <i class="fas fa-stethoscope fa-lg"></i>
+              <i class="fab fa-cc-visa fa-lg"></i>
+              <i class="fab fa-cc-mastercard fa-lg"></i>
+              <i class="fab fa-cc-amex fa-lg"></i>
+            </div>            
           </div>
           <div class="col-md-6 text-end">
-            <p>© Copyright 2022 Kaira. All rights reserved. Design by <a href="https://templatesjungle.com"
-                target="_blank">TemplatesJungle</a> Distribution By <a href="https://themewagon.com"
-              target="blank">ThemeWagon</a></p>
+            <p>© 2024 Veterinaria El Rincón del Peludo. Todos los derechos reservados.</p>
           </div>
         </div>
       </div>
     </div>
-  </footer>
+  </footer>  
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
