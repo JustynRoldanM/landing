@@ -122,6 +122,7 @@ h1 {
 }
 
 /*Nosotros section*/
+
 .about_section {
   background-image: url(images/about-bg.png);
   background-size: cover;
@@ -162,7 +163,6 @@ h1 {
   background: linear-gradient(0deg, #cc5fff 0%, #d9b8ff 100%);
   display: flex;
   width: 100%;
-  padding: 80px;
 }
 
 .pug, .info-nosotros, .texto-detalle {
@@ -489,24 +489,37 @@ select option:enabled {
     height: 80%;
     margin: 0 auto;
   }
+
+  .detail-box h3{
+    font-size: 1.6rem !important;
+  }
+
+  .detail-box h4{
+    font-size: 1rem !important;
+    font-weight: bold;
+  }
+
+  .detail-box p{
+    font-size: .85rem !important;
+  }
 }
 
 @media(max-width: 768px) {
   .icon {
-    width: 19px;
+    width: 28px;
   }
 
   h1 {
-    font-size: 2.1rem;
+    font-size: 2.4rem;
   }
 
   .info-button {
-    font-size: 0.7rem;
+    font-size: 1rem;
     width: auto;
   }
 
   .navbar-brand {
-    font-size: 1.1rem;
+    font-size: 1.7rem;
   }
 
   .navbar-toggler-icon {
@@ -514,7 +527,7 @@ select option:enabled {
   }
 
   .navbar-nav .nav-item a {
-    font-size: 0.75rem;
+    font-size: 0.95rem;
   }
 
   .container {
@@ -558,6 +571,10 @@ select option:enabled {
   #form{
     padding: 20px;
   }
+
+  #info-nosotros{
+    padding: 60px !important;
+  }
 }
 
 @media(max-width: 576px) {
@@ -567,7 +584,11 @@ select option:enabled {
   }
 
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.30rem;
+  }
+
+  .info-button{
+    font-size: 0.8rem;
   }
 
   .detalle-icono-contenedor{
@@ -578,4 +599,12 @@ select option:enabled {
     padding: 20px !important;
   }
 
+  .navbar-nav .nav-item a{
+    font-size: 0.8rem;
+    padding: 18px !important;
+  }
+
+  #info-nosotros{
+    padding: 70px !important;
+  }
 }
