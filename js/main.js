@@ -30,6 +30,8 @@ let sendData = () => {
     });
 };
 
+const emailRegex = /^[a-z]([a-z]|[0-9]|\.|_)*@[a-z]+\.[a-z]{2,3}(\.[a-z]{2,3})?$/;
+
 let loaded = () => {
     const form = document.getElementById('form');
 
@@ -38,18 +40,29 @@ let loaded = () => {
 
         const emailElement = document.getElementById('inputCorreo');
         const emailText = emailElement.value.trim();
-        if (emailText.length === 0) {
-            emailElement.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-5px)' }, { transform: 'translateX(5px)' }, { transform: 'translateX(0)' }], {
-                duration: 300,
-                iterations: 1
-            });
+
+        if (!emailRegex.test(emailText)) {
+            emailElement.animate(
+                [
+                    { transform: 'translateX(0)' },
+                    { transform: 'translateX(-5px)' },
+                    { transform: 'translateX(5px)' },
+                    { transform: 'translateX(0)' }
+                ],
+                {
+                    duration: 300,
+                    iterations: 1
+                }
+            );
             emailElement.focus();
-            return; 
+            alert('Por favor, introduce un correo electrónico válido.');
+            return;
         }
 
         sendData();
     });
 };
+
 
 let getData = () => {
     fetch(databaseURL, {
@@ -62,12 +75,38 @@ let getData = () => {
             return response.json(); 
         })
         .then(data => {
-            console.log(data);
+            const citasContainer = document.getElementById('citas');
+            const listaCitas = document.getElementById('listaCitas');
+            citasContainer.innerHTML = '';
+
+            if (data && Object.keys(data).length > 0) {
+                Object.entries(data).forEach(([key, cita]) => {
+                    const citaDiv = document.createElement('div');
+                    citaDiv.classList.add('cita-card');
+                    citaDiv.innerHTML = `
+                        <p><strong>Correo:</strong> ${cita.email || 'Sin especificar'}</p>
+                        <p><strong>Nombre:</strong> ${cita.nombre || 'Sin especificar'}</p>
+                        <p><strong>Tipo de Mascota:</strong> ${cita.tipoMascota || 'Sin especificar'}</p>
+                        <p><strong>Servicio:</strong> ${cita.servicio || 'Sin especificar'}</p>
+                        <p><strong>Fecha de Registro:</strong> ${cita.fechaRegistro || 'Sin especificar'}</p>
+                    `;
+                    citasContainer.appendChild(citaDiv);
+                });
+            } else {
+                citasContainer.innerHTML = `
+                    <div class="no-data-message">
+                        <p style="color: rgba(255,255,255,1);">No hay citas registradas en este momento.</p>
+                    </div>
+                `;
+            }
+
+            listaCitas.classList.remove('d-none');
         })
         .catch(error => {
             console.error('Error:', error); 
         });
 };
+
 
 window.addEventListener('load', getData);
 window.addEventListener('load', loaded);
