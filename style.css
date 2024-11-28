@@ -505,6 +505,8 @@ select option:enabled {
   justify-content: center;
   align-items: center;
   gap: 20px;
+  padding: 0;
+  margin: 0; 
 }
 
 .testimonial {
@@ -942,10 +944,6 @@ select option:enabled {
 
   .testimonial-text, .testimonial-author{
     font-size: .9rem;
-  }
-
-  .testimonial-container{
-    background-color: red;
   }
 
   #testimonios h2{
