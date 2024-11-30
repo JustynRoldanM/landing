@@ -265,7 +265,7 @@
           <div class="contact-header text-center pb-3">
             <h3 class="section-title text-uppercase titulo-seccion">¿Cómo te gustaría celebrar el cumpleaños de tu mascota?</h3>
           </div>
-          <form id="form" class="d-flex flex-wrap gap-2">
+          <form id="form" class="d-flex flex-wrap gap-2 align-items-center justify-content-center">
             <input 
               id="inputCorreo" 
               type="email" 
@@ -299,17 +299,29 @@
               name="celebracion" 
               class="form-select form-select-lg w-100" 
               required>
-              <option value="" disabled selected>El mejor regalo para el más querido</option>
+              <option value="" disabled selected>¿Cómo te gustaría?</option>
               <option value="Fiesta con otros animales">Fiesta con otros animales</option>
               <option value="Sesión de fotos">Sesión de fotos</option>
               <option value="Comprar un regalo especial">Comprar un regalo especial</option>
               <option value="Preparar un pastel para mascotas">Preparar un pastel para mascotas</option>
             </select>
+
+            <select 
+              id="selectServicio" 
+              name="servicio" 
+              class="form-select form-select-lg w-100" 
+              required>
+              <option value="" disabled selected>Selecciona el Servicio</option>
+              <option value="Consulta veterinaria">Consulta veterinaria</option>
+              <option value="Baño y peluquería">Baño y peluquería</option>
+              <option value="Vacunación">Vacunación</option>
+              <option value="Otro servicio">Otro servicio</option>
+            </select>
             
             <button 
               id="botonFormulario" 
               class="btn btn-dark btn-lg text-uppercase w-100">
-              Enviar Preferencia
+              Registrar Cita
             </button>
             <p class="mt-2 text-center w-100">
               Tus preferencias ayudarán a planificar celebraciones ideales para tus mascotas.
@@ -327,7 +339,6 @@
       </section>
     </div>
   </section>
-  
   
   <footer id="footer" class="bg-light text-dark">
     <div class="container">

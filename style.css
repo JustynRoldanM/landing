@@ -348,6 +348,10 @@ h1 {
   padding-bottom: 36px;
 }
 
+.contenedor-formulario h3, #resultadosVotacion h3{
+  font-size: 1.6rem !important;
+}
+
 .c-contacto {
   width: 100%;
   margin: 0 auto;
@@ -379,7 +383,7 @@ h1 {
 
 #form {
   box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);
-  padding: 90px;
+  padding: 60px;
 }
 
 #form button {
@@ -666,7 +670,7 @@ select option:enabled {
   }
 
   .contenedor-formulario{
-    width: 70%;
+    width: 65%;
   }
 }
 
@@ -705,6 +709,10 @@ select option:enabled {
 
   #nosotros article{
     padding: 30px !important;
+  }
+
+  .contenedor-formulario{
+    width: 75%;
   }
 }
 
@@ -834,8 +842,8 @@ select option:enabled {
   }
 
   .contenedor-formulario{
-    padding-right: 110px !important;
-    padding-left:110px !important;
+    padding-right: 10px !important;
+    padding-left: 10px !important;
   }
 
   #form {
@@ -875,7 +883,11 @@ select option:enabled {
     margin-bottom: 20px;
   }
 
-  select:invalid,select:valid,select option:first-child:disabled,#form p,#form input,#form input::placeholder {
+ .contenedor-formulario h3, #resultadosVotacion h3{
+    font-size: 1.3rem;
+  }
+
+  select:invalid,select:valid,select option:first-child:disabled,#form p,#form input,#form input::placeholder, select option, #resultados p{
     font-size: .9rem;
   }
 

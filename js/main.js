@@ -13,6 +13,9 @@ let sendData = () => {
     const data = Object.fromEntries(formData.entries());
 
     data['fechaRegistro'] = new Date().toLocaleString('es-CO', { timeZone: 'America/Guayaquil' });
+    data['fechaServicio'] = "";
+    data['horaServicio'] = "";
+    data['estado'] = "Pendiente";
 
     fetch(databaseURL, {
         method: 'POST',
@@ -28,7 +31,7 @@ let sendData = () => {
         return response.json();
     })
     .then(() => {
-        alert('Tu preferencia fue registrada con éxito. ¡Gracias por participar!');
+        alert('Tu solicitud de registro fué ingresada al sistema con éxito!');
         form.reset();
         updateCelebracionCount(data.celebracion);
         updateUI();
@@ -53,21 +56,13 @@ let updateUI = () => {
         const card = document.createElement('div');
         card.classList.add('result-card');
         card.innerHTML = `
-            <p>${opcion} : <strong>${count}</strong></p>
+            <p>${opcion}: <strong>${count}</strong></p>
         `;
         resultadosContainer.appendChild(card);
     });
 };
 
-let loaded = () => {
-    const form = document.getElementById('form');
-
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        sendData();
-    });
-
+let getData = () => {
     fetch(databaseURL, { method: 'GET' })
         .then(response => {
             if (!response.ok) {
@@ -87,14 +82,20 @@ let loaded = () => {
         })
         .catch(error => {
             console.error('Error al cargar datos iniciales:', error);
+            alert('Hubo un problema al cargar los datos. Inténtalo más tarde.');
             updateUI();
         });
 };
 
-let ready = () => {
-    console.log("DOM está listo");
-    getData();
-}
+let loaded = () => {
+    const form = document.getElementById('form');
 
-window.addEventListener("DOMContentLoaded", ready)
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        sendData();
+    });
+
+    getData();
+};
+
 window.addEventListener('load', loaded);
