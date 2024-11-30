@@ -23,12 +23,14 @@ let sendData = () => {
     .then(result => {
         alert('Tu cita fue registrada con éxito. Pronto recibirás un correo con más información.');
         form.reset();
+        getData();
     })
     .catch(error => {
         alert('Ocurrió un error al procesar tu solicitud. Por favor, intenta nuevamente.');
         console.error(error);
     });
 };
+
 
 const emailRegex = /^[a-z]([a-z]|[0-9]|\.|_)*@[a-z]+\.[a-z]{2,3}(\.[a-z]{2,3})?$/;
 
