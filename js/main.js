@@ -94,7 +94,7 @@ let loaded = () => {
         event.preventDefault();
         sendData();
     });
-
+    console.log('DOM está listo')
     getData();
 };
 
