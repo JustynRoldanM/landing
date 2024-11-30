@@ -1,4 +1,11 @@
-const databaseURL = 'https://landing-1e79b-default-rtdb.firebaseio.com/collection.json';
+const databaseURL = 'https://landing-1e79b-default-rtdb.firebaseio.com/celebraciones.json';
+
+const celebracionCount = {
+    "Fiesta con otros animales": 0,
+    "Sesión de fotos": 0,
+    "Comprar un regalo especial": 0,
+    "Preparar un pastel para mascotas": 0
+};
 
 let sendData = () => {
     const form = document.getElementById('form');
@@ -20,10 +27,11 @@ let sendData = () => {
         }
         return response.json();
     })
-    .then(result => {
-        alert('Tu cita fue registrada con éxito. Pronto recibirás un correo con más información.');
+    .then(() => {
+        alert('Tu preferencia fue registrada con éxito. ¡Gracias por participar!');
         form.reset();
-        getData();
+        updateCelebracionCount(data.celebracion);
+        updateUI();
     })
     .catch(error => {
         alert('Ocurrió un error al procesar tu solicitud. Por favor, intenta nuevamente.');
@@ -31,8 +39,25 @@ let sendData = () => {
     });
 };
 
+let updateCelebracionCount = (opcion) => {
+    if (celebracionCount[opcion] !== undefined) {
+        celebracionCount[opcion]++;
+    }
+};
 
-const emailRegex = /^[a-z]([a-z]|[0-9]|\.|_)*@[a-z]+\.[a-z]{2,3}(\.[a-z]{2,3})?$/;
+let updateUI = () => {
+    const resultadosContainer = document.getElementById('resultados');
+    resultadosContainer.innerHTML = '';
+
+    Object.entries(celebracionCount).forEach(([opcion, count]) => {
+        const card = document.createElement('div');
+        card.classList.add('result-card');
+        card.innerHTML = `
+            <p>${opcion} : <strong>${count}</strong></p>
+        `;
+        resultadosContainer.appendChild(card);
+    });
+};
 
 let loaded = () => {
     const form = document.getElementById('form');
@@ -40,76 +65,36 @@ let loaded = () => {
     form.addEventListener('submit', function (event) {
         event.preventDefault();
 
-        const emailElement = document.getElementById('inputCorreo');
-        const emailText = emailElement.value.trim();
-
-        if (!emailRegex.test(emailText)) {
-            emailElement.animate(
-                [
-                    { transform: 'translateX(0)' },
-                    { transform: 'translateX(-5px)' },
-                    { transform: 'translateX(5px)' },
-                    { transform: 'translateX(0)' }
-                ],
-                {
-                    duration: 300,
-                    iterations: 1
-                }
-            );
-            emailElement.focus();
-            alert('Por favor, introduce un correo electrónico válido.');
-            return;
-        }
-
         sendData();
     });
-};
 
-
-let getData = () => {
-    fetch(databaseURL, {
-        method: 'GET',
-    })
+    fetch(databaseURL, { method: 'GET' })
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Error al obtener los datos: ${response.statusText}`);
             }
-            return response.json(); 
+            return response.json();
         })
         .then(data => {
-            const citasContainer = document.getElementById('citas');
-            const listaCitas = document.getElementById('listaCitas');
-            citasContainer.innerHTML = '';
-
-            if (data && Object.keys(data).length > 0) {
-                Object.entries(data).forEach(([key, cita]) => {
-                    const citaDiv = document.createElement('div');
-                    citaDiv.classList.add('cita-card');
-                    citaDiv.innerHTML = `
-                        <p><strong>Correo:</strong> ${cita.email || 'Sin especificar'}</p>
-                        <p><strong>Nombre:</strong> ${cita.nombre || 'Sin especificar'}</p>
-                        <p><strong>Tipo de Mascota:</strong> ${cita.tipoMascota || 'Sin especificar'}</p>
-                        <p><strong>Servicio:</strong> ${cita.servicio || 'Sin especificar'}</p>
-                        <p><strong>Fecha de Registro:</strong> ${cita.fechaRegistro || 'Sin especificar'}</p>
-                    `;
-                    citasContainer.appendChild(citaDiv);
+            if (data) {
+                Object.values(data).forEach(cita => {
+                    if (cita.celebracion && celebracionCount[cita.celebracion] !== undefined) {
+                        celebracionCount[cita.celebracion]++;
+                    }
                 });
-            } else {
-                citasContainer.innerHTML = `
-                    <div class="no-data-message">
-                        <p style="color: rgba(255,255,255,1);">No hay citas registradas en este momento.</p>
-                    </div>
-                `;
             }
-
-            listaCitas.classList.remove('d-none');
+            updateUI();
         })
         .catch(error => {
-            console.error('Error:', error); 
+            console.error('Error al cargar datos iniciales:', error);
+            updateUI();
         });
 };
 
+let ready = () => {
+    console.log("DOM está listo");
+    getData();
+}
 
-window.addEventListener('load', getData);
+window.addEventListener("DOMContentLoaded", ready)
 window.addEventListener('load', loaded);
-

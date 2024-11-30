@@ -260,9 +260,10 @@
     <div class="container c-contacto">
       <div class="row justify-content-center">
         
+        <!-- Formulario de Reservas y Cumpleaños -->
         <div class="contenedor-formulario">
           <div class="contact-header text-center pb-3">
-            <h3 class="section-title text-uppercase titulo-seccion">Contacto</h3>
+            <h3 class="section-title text-uppercase titulo-seccion">¿Cómo te gustaría celebrar el cumpleaños de tu mascota?</h3>
           </div>
           <form id="form" class="d-flex flex-wrap gap-2">
             <input 
@@ -294,36 +295,39 @@
             </select>
             
             <select 
-              id="selectServicio" 
-              name="servicio" 
+              id="selectCelebracion" 
+              name="celebracion" 
               class="form-select form-select-lg w-100" 
               required>
-              <option value="" disabled selected>Selecciona un Servicio</option>
-              <option value="Consulta General">Consulta General</option>
-              <option value="Vacunación">Vacunación</option>
-              <option value="Estética">Estética</option>
-              <option value="Cirugía">Cirugía</option>
+              <option value="" disabled selected>El mejor regalo para el más querido</option>
+              <option value="Fiesta con otros animales">Fiesta con otros animales</option>
+              <option value="Sesión de fotos">Sesión de fotos</option>
+              <option value="Comprar un regalo especial">Comprar un regalo especial</option>
+              <option value="Preparar un pastel para mascotas">Preparar un pastel para mascotas</option>
             </select>
             
             <button 
               id="botonFormulario" 
               class="btn btn-dark btn-lg text-uppercase w-100">
-              Reservar Cita
+              Enviar Preferencia
             </button>
             <p class="mt-2 text-center w-100">
-              Recibirás un correo electrónico con las citas disponibles y más información para confirmar tu reserva.
+              Tus preferencias ayudarán a planificar celebraciones ideales para tus mascotas.
             </p>
           </form>          
         </div>
       </div>
     </div>
+  
+    <!-- Contenedor de Resultados -->
     <div class="c-citas">
-      <section id="listaCitas" class="citas-container d-none">
-        <h3 class="section-title text-uppercase titulo-seccion">Lista de Citas Registradas</h3>
-        <div id="citas"></div>
+      <section id="resultadosVotacion" class="citas-container">
+        <h3 class="section-title text-uppercase titulo-seccion">Resultados de Celebraciones</h3>
+        <div id="resultados" class="resultados-cards"></div>
       </section>
     </div>
   </section>
+  
   
   <footer id="footer" class="bg-light text-dark">
     <div class="container">
