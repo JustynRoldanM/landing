@@ -1,0 +1,86 @@
+/*
+Theme Name: Kaira - Bootstrap 5 Fashion Store HTML CSS Template
+Theme URI: https://templatejungle.com/
+Author: TemplatesJungle
+Author URI: https://templatejungle.com/
+Description: Kaira - Bootstrap 5 Fashion Store HTML CSS Template is specially designed product packaged for Fashion Stores by TemplatesJungle.
+Version: 1.1
+*/
+
+/*--------------------------------------------------------------
+This is main CSS file that contains custom style rules used in this template
+--------------------------------------------------------------*/
+
+/*------------------------------------*\
+    Table of contents
+\*------------------------------------*/
+
+/*------------------------------------------------
+CSS STRUCTURE:
+
+1. VARIABLES
+2. GENERAL TYPOGRAPHY
+
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+/** 7.9 Testimonial Slider
+--------------------------------------------------------------*/
+.testimonials .section-title {
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.testimonial-swiper .testimonial-item blockquote {
+  font-size: 2.5em;
+}
+
+.testimonial-swiper .testimonial-item blockquote>p {
+  margin: 0;
+}
+
+.testimonials .review-title {
+  font-size: 14px;
+}
+
+.testimonial-swiper .swiper-slide {
+  opacity: 0.2;
+  width: 42% !important;
+}
+
+.testimonial-swiper.swiper-3d .swiper-slide-shadow-left,
+.testimonial-swiper.swiper-3d .swiper-slide-shadow-right {
+  background-image: none;
+}
+
+.testimonial-swiper .swiper-slide-active {
+  opacity: 1;
+}
+
+.testimonials .swiper-pagination {
+  left: 0;
+  right: 0;
+}
+
+.testimonials .swiper-pagination .swiper-pagination-bullet-active {
+  background: #8C907E;
+}
+
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  margin-right: 10px;
+}
+
+@media only screen and (max-width: 1199px) {
+  .testimonial-swiper .testimonial-item blockquote {
+    font-size: 1.8em;
+  }
+}
+
+@media only screen and (max-width: 999px) {
+  .testimonial-swiper .testimonial-item blockquote {
+    font-size: 1.2em;
+  }
+}
