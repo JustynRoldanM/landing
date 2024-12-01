@@ -1,6 +1,6 @@
-// JavaScript para el modal
-const services = document.querySelectorAll('.col-md-4');
+const services = document.querySelectorAll('.services .icon-bottom');
 const modal = document.createElement('div');
+
 modal.classList.add('modal');
 modal.innerHTML = `
   <div class="modal-content">
@@ -14,12 +14,17 @@ const modalImage = modal.querySelector('img');
 const closeModal = modal.querySelector('.modal-close');
 
 services.forEach(service => {
-  service.addEventListener('click', () => {
-    const imgSrc = service.querySelector('.icon2 img').getAttribute('src');
-    modalImage.src = imgSrc;
-    modal.classList.add('active');
+    service.addEventListener('click', () => {
+      const serviceContainer = service.closest('.services');
+      const imgSrc = serviceContainer.querySelector('.icon2 img').getAttribute('src');
+      modalImage.src = imgSrc;
+  
+      modalImage.onload = () => {
+        modal.classList.add('active');
+      };
+    });
   });
-});
+  
 
 closeModal.addEventListener('click', () => {
   modal.classList.remove('active');
