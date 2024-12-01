@@ -98,4 +98,5 @@ let loaded = () => {
     getData();
 };
 
+
 window.addEventListener('load', loaded);
