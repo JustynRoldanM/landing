@@ -11,6 +11,10 @@
   --morado: rgba(164, 128, 236, 0.852);
 }
 
+body{
+  overflow-x: hidden !important;
+}
+
 
 h1 {
   font-weight: bold;
